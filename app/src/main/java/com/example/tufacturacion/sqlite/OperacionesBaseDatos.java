@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import com.example.tufacturacion.modelo.CabeceraPedido;
 import com.example.tufacturacion.modelo.Cliente;
 import com.example.tufacturacion.modelo.DetallePedido;
+import com.example.tufacturacion.modelo.FormaPago;
 import com.example.tufacturacion.modelo.Producto;
 import com.example.tufacturacion.sqlite.BaseDatosPedidos.Tablas;
 import com.example.tufacturacion.sqlite.ContratoPedidos.*;
@@ -125,6 +126,14 @@ public final class OperacionesBaseDatos {
     /**FIN CRUD CABECERAS DE PEDIDO*/
 
     /**CRUD DETALLES DE PEDIDO*/
+    public Cursor obtenerDetallesPedido() {
+        SQLiteDatabase db = baseDatos.getReadableDatabase();
+
+        String sql = String.format("SELECT * FROM %s", Tablas.DETALLE_PEDIDO);
+
+        return db.rawQuery(sql, null);
+    }
+
     //Obtener Detalle por Id de Pedido
     public Cursor obtenerDetallesPorIdPedido(String idCabeceraPedido) {
         SQLiteDatabase db = baseDatos.getReadableDatabase();
